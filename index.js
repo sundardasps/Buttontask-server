@@ -10,7 +10,7 @@ app.use(
   })
 );
 
-const htmlString = `<button> reject </button> <button>puse</button> <button>start</button>`;
+const htmlString = `<button> Reject </button> <button>Pause</button> <button>Start</button>`;
 
 
 app.get("/button", (req, res) => {
