@@ -6,7 +6,7 @@ import mongoose from "mongoose";
 import {buttonFetch,buttonAction,createButton} from './controller/userController.js'
 import auth from './middlewares/auth.js'
 env.config()
-mongoose.connect(process.env.MONGO_SERVER)
+mongoose.connect(process.env.MONGO_SERVER,{ useNewUrlParser: true, useUnifiedTopology: true })
 
 app.use(express.json());
 
