@@ -1,22 +1,25 @@
 import express from "express";
-import WebHooks from "node-webhooks";
-import cors from "cors";
 const app = express();
+import cors from "cors";
+import env from 'dotenv'
+import mongoose from "mongoose";
+import {buttonFetch,buttonAction,createButton} from './controller/userController.js'
+import auth from './middlewares/auth.js'
+env.config()
+mongoose.connect(process.env.MONGO_SERVER)
+
+app.use(express.json());
 
 app.use(
   cors({
-    methods: ["GET"],
+    methods:["GET","POST"],
     origin: "*",
   })
 );
 
-const htmlString = `<button> Reject </button> <button>Pause</button> <button>Start</button>`;
+app.get("/v2/location/:locationId/contacts/detail/:contactId",auth,buttonFetch); 
+app.get("/v2/location/:locationId/contacts/detail/:contactId/:action",auth,buttonAction); 
 
-
-app.get("/button", (req, res) => {
-  res.json(htmlString);
-});
-
-app.listen(3000, () => {
+app.listen(process.env.SERVER_PORT, () => {
   console.log("server connected!");
 });
