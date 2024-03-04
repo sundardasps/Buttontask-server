@@ -26,7 +26,7 @@ export const buttonFetch = async (req, res) => {
       const tags = await tagDb.find({locationId:locationId});
       const buttons = await buttonDb.find();
       if (buttons) {
-        return res.status(200).json(buttons,tags);
+        return res.status(200).json({buttons,tags});
       }
     } else {
       webhooks.add("task", req.originalUrl);
