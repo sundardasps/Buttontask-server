@@ -9,6 +9,7 @@ const schema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  
 });
 
 const connection = mongoose.model("connection", schema);
