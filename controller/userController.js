@@ -23,9 +23,10 @@ export const buttonFetch = async (req, res) => {
     });
 
     if (duplicateRegistration) {
+      const tags = await tagDb.find({locationId:locationId});
       const buttons = await buttonDb.find();
       if (buttons) {
-        return res.status(200).json(buttons);
+        return res.status(200).json(buttons,tags);
       }
     } else {
       webhooks.add("task", req.originalUrl);
